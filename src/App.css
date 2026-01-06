@@ -1,0 +1,112 @@
+:root {
+  --hex-bg: #0a0a0c;
+  --hex-panel: #111114;
+  --neon-emerald: #10b981;
+  --neon-glow: rgba(16, 185, 129, 0.15);
+  --border-line: #202025;
+  --text-bright: #ecf0f1;
+}
+
+body {
+  margin: 0;
+  background-color: var(--hex-bg);
+  color: var(--text-bright);
+  font-family: 'Space Grotesk', sans-serif; /* خط تقني حديث */
+}
+
+.dashboard-shell {
+  display: flex;
+  height: 100vh;
+  background-image: 
+    radial-gradient(circle at 20% 20%, rgba(16, 185, 129, 0.05) 0%, transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(5, 150, 105, 0.05) 0%, transparent 40%);
+}
+
+/* --- Tech Sidebar --- */
+.tech-sidebar {
+  width: 80px; /* ستايل أيقونات فقط لتركيز المساحة */
+  background: var(--hex-panel);
+  border-right: 1px solid var(--border-line);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px 0;
+}
+
+.side-icon {
+  width: 45px; height: 45px;
+  border-radius: 12px;
+  margin-bottom: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: 0.3s;
+}
+
+.side-icon.active {
+  background: var(--neon-glow);
+  border-color: var(--neon-emerald);
+  color: var(--neon-emerald);
+}
+
+/* --- Main HUD Area --- */
+.main-hud {
+  flex: 1;
+  padding: 40px;
+  overflow-y: auto;
+}
+
+.hud-header {
+  border-left: 4px solid var(--neon-emerald);
+  padding-left: 20px;
+  margin-bottom: 50px;
+}
+
+/* --- Metrics Grid --- */
+.metrics-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-bottom: 50px;
+}
+
+.metric-box {
+  background: var(--hex-panel);
+  padding: 30px;
+  border: 1px solid var(--border-line);
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 90% 100%, 0 100%); /* زاوية مشطوفة */
+  position: relative;
+}
+
+.metric-box label { color: #64748b; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; }
+.metric-box .big-num { font-size: 42px; font-weight: 800; margin: 10px 0; }
+
+/* --- Cyber Table --- */
+.security-list {
+  background: var(--hex-panel);
+  border: 1px solid var(--border-line);
+  padding: 0;
+  border-radius: 4px;
+}
+
+.cyber-tr {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  padding: 20px;
+  border-bottom: 1px solid var(--border-line);
+  align-items: center;
+}
+
+.cyber-tr:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.status-dot {
+  display: inline-block;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  margin-right: 10px;
+  box-shadow: 0 0 10px currentColor;
+}
