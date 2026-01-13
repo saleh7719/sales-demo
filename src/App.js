@@ -3,63 +3,77 @@ import './App.css';
 
 function App() {
   const assets = [
-    { name: 'Global Firewall API', risk: 'Critical', threats: 164, status: '#ef4444' },
-    { name: 'Auth Node Alpha', risk: 'Secure', threats: 0, status: '#10b981' },
-    { name: 'Database Encryption', risk: 'Medium', threats: 24, status: '#f59e0b' }
+    { name: "Encryption_Module_X", risk: "Critical", status: "Active", alerts: 142 },
+    { name: "User_Auth_Node", risk: "Low", status: "Secure", alerts: 0 },
+    { name: "Cloud_Inbound_API", risk: "Medium", status: "Monitoring", alerts: 24 }
   ];
 
   return (
-    <div className="dashboard-shell">
-      <aside className="tech-sidebar">
-        <div className="side-icon active">📊</div>
-        <div className="side-icon">🛡️</div>
-        <div className="side-icon">📡</div>
-        <div className="side-icon">⚙️</div>
+    <div className="obsidian-layout">
+      {/* Sidebar Navigation */}
+      <aside className="obsidian-sidebar">
+        <div className="sidebar-header">Command_Ctr</div>
+        <div className="nav-link active">Security Monitor</div>
+        <div className="nav-link">Resource Hub</div>
+        <div className="nav-link">Threat Logs</div>
+        <div className="nav-link">Settings</div>
       </aside>
 
-      <main className="main-hud">
-        <div className="hud-header">
-          <h1 style={{fontSize: '32px', margin: 0}}>Operational <span style={{color: 'var(--neon-emerald)'}}>Matrix</span></h1>
-          <span style={{color: '#64748b', fontSize: '13px'}}>System integrity: 98.4% • Last sync: Just now</span>
+      {/* Main Content Area */}
+      <main className="obsidian-main">
+        <header style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+          <h1 style={{fontSize: '28px', margin: 0}}>Operational Intelligence</h1>
+          <button className="btn-gold">Execute System Scan</button>
+        </header>
+
+        {/* Highlight Cards */}
+        <div className="info-row">
+          <div className="obsidian-card">
+            <div className="card-label">Threat Level</div>
+            <div className="card-value" style={{color: 'var(--accent-red)'}}>HIGH</div>
+            <div style={{fontSize: '11px', color: 'var(--text-gray)'}}>Isolation Protocol Required</div>
+          </div>
+          <div className="obsidian-card">
+            <div className="card-label">Active Agents</div>
+            <div className="card-value">1,402</div>
+            <div style={{fontSize: '11px', color: 'var(--accent-gold)'}}>Online & Secure</div>
+          </div>
+          <div className="obsidian-card">
+            <div className="card-label">Network Load</div>
+            <div className="card-value">42%</div>
+            <div style={{fontSize: '11px', color: 'var(--text-gray)'}}>Optimized Throughput</div>
+          </div>
         </div>
 
-        <div className="metrics-row">
-          <div className="metric-box">
-            <label>Total Assets</label>
-            <div className="big-num">06</div>
-            <div style={{color: 'var(--neon-emerald)'}}>▲ All Nodes Active</div>
-          </div>
-          <div className="metric-box">
-            <label>Open Vulnerabilities</label>
-            <div className="big-num" style={{color: '#ef4444'}}>322</div>
-            <div style={{color: '#ef4444'}}>▼ Action Required</div>
-          </div>
-          <div className="metric-box">
-            <label>Threat Prevention</label>
-            <div className="big-num">1.2k</div>
-            <div style={{color: '#64748b'}}>Last 24 hours</div>
-          </div>
-        </div>
-
-        <div className="security-list">
-          <div className="cyber-tr" style={{background: '#1a1a1e', fontWeight: 'bold', fontSize: '12px', color: '#64748b'}}>
-            <div>TARGET_ASSET</div>
-            <div>THREAT_LEVEL</div>
-            <div>INCIDENTS</div>
-            <div>PROTOCOL</div>
-          </div>
-          
-          {assets.map((asset, i) => (
-            <div className="cyber-tr" key={i}>
-              <div style={{fontWeight: '600'}}>{asset.name}</div>
-              <div>
-                <span className="status-dot" style={{color: asset.status, backgroundColor: asset.status}}></span>
-                {asset.risk}
-              </div>
-              <div style={{color: asset.threats > 0 ? '#ef4444' : 'inherit'}}>{asset.threats}</div>
-              <div><button style={{background: 'none', border: '1px solid #333', color: '#fff', padding: '5px 10px', borderRadius: '4px', cursor: 'pointer'}}>REMEDIATE</button></div>
-            </div>
-          ))}
+        {/* Data List Section */}
+        <div className="data-panel">
+          <h2 style={{fontSize: '18px', marginBottom: '25px'}}>Active Asset Monitoring</h2>
+          <table className="elegant-table">
+            <thead>
+              <tr>
+                <th>RESOURCE NAME</th>
+                <th>RISK LEVEL</th>
+                <th>STATUS</th>
+                <th>THREAT_INDEX</th>
+              </tr>
+            </thead>
+            <tbody>
+              {assets.map((asset, i) => (
+                <tr key={i}>
+                  <td style={{fontWeight: '700'}}>{asset.name}</td>
+                  <td>
+                    <span style={{color: asset.risk === 'Critical' ? 'var(--accent-red)' : '#00ff88'}}>
+                      ● {asset.risk}
+                    </span>
+                  </td>
+                  <td><span className="status-badge">{asset.status}</span></td>
+                  <td style={{color: asset.alerts > 0 ? 'var(--accent-red)' : 'white'}}>
+                    {asset.alerts} Detection Events
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </main>
     </div>
